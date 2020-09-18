@@ -12,7 +12,8 @@ public class AutomaticVersionProcessor : IPreprocessBuildWithReport
         //for google request
         PlayerSettings.Android.targetArchitectures |= AndroidArchitecture.ARM64;
 
-        if (EditorUtility.DisplayDialog("Bundle Version Code"
+        if (!report.summary.options.HasFlag(BuildOptions.Development)
+            && EditorUtility.DisplayDialog("Bundle Version Code"
             , $"Current Bundle Version Code:{PlayerSettings.Android.bundleVersionCode}, ++?"
             , "Yes", "No"))
         {
